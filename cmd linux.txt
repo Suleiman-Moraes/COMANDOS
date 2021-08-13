@@ -1,0 +1,28 @@
+ls
+ls -ltr
+ls -a //arquivos ocultos
+ls -la
+ls -lh
+ls -R //mostra subdiretorios
+
+cd - //volta ultimo diretorio
+cd ~ //diretorio home
+cd <TAB> //lista as pastas
+
+cd pasta && ls //executar 2 cmds ao msm tempo
+
+cat <nome> // ler conteudo do arquivo
+cat <nome> -n // mostra as linhas
+cat <nome> -e // mostra o final das linhas com $
+cat <nome> <nome2> // ler conteudo dos arquivos
+cat <nome> <nome2> > <nome3> // juntar dois arquivos e/ou criar um terceiro
+cat <nome> >> <nome3> // concatenar com o arquivo final
+
+touch <nome> //cria arquivo
+touch <nome> <nome2> //cria arquivos
+touch <nome.extensao> //cria arquivo
+
+man <cmd> //Explica os comandos, vulgo um manual
+man ls
+
+ctrl + r // lista os cmd utilizados com filtro

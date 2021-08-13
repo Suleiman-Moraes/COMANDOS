@@ -28,6 +28,7 @@ kubectl expose deployment <nome> --type=<tipo> --port=<porta>
 kubectl expose deployment flask-deploy --type=LoadBalancer --port=5000
 
 kubectl logs -f nome-pod
+kubectl delete -f arquivo.yaml
 kubectl delete nome-objeto
 kubectl delete pod/nome-objeto
 kubectl delete service/nome-objeto
