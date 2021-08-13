@@ -1,0 +1,95 @@
+mvnw clean install 
+host.docker.internal //host da maquina hospedeira, vulgo localhost
+
+docker build -f Dockerfile --build-arg JAR_FILE=user-api-1.0.0.jar -t user-api/user-api .
+
+docker build -t demo/docker-demo .
+
+docker run --name docker-demo -d -p 8080:8080 demo/tarefas
+
+docker run --name docker-demo -p 8085:8080 demo/docker-demo
+
+docker run -p 9080:8080 aws_project01/aws_project01
+
+docker logs -f --tail 10 docker-demo
+
+//Remover um container
+docker rm -f 14a8a21d8a74
+
+//Remove img
+docker image rmi -f f0a7a6b05427
+
+//limpar imgs não utilizidas
+docker system prune
+
+//Copiar arquivos do container
+docker cp <nome_container>:<caminho_ex:/app/app.js> ./<local>/
+
+//Ver informações do container
+docker top <nome_container>
+
+//Ver informações mais detalhadas do container
+docker inspect <nome_container>
+
+//Verifica os containers rodadando, e seus gastos
+docker stats
+
+docker stop 2b0008841b99
+
+docker container ls -a
+
+docker stop docker-demo
+
+docker start docker-demo
+--rm //Remove o container apos derrubar
+
+docker-compose up -d
+
+docker-compose up -d --build
+docker-compose ps
+
+docker start tarefas_web_1
+
+docker-compose down
+
+docker network create --driver bridge netsusu
+docker network ls
+docker network prune
+docker network rm netsusu
+docker network inspect netsusu
+
+// Subindo postgres com volume
+docker run --name postgres -p 5433:5432 -v C:/areatrabalho/volumes/PostgreSQL:/var/lib/postgresql/data -e POSTGRES_PASSWORD=123456 -d --network=netsusu postgres:12.7-alpine
+
+docker volume ls
+docker volume inspect 52c92d74a21cf353638ec71e188a2932ddf9f005a5161864bad17ac3e0da0091
+docker volume rm 52c92d74a21cf353638ec71e188a2932ddf9f005a5161864bad17ac3e0da0091
+docker volume prune //remove não utilizidos
+
+//Restart quando cai o container
+docker update --restart unless-stopped $(docker ps -q)
+
+docker logs --tail 50 --follow --timestamps ef281d3d5c3d
+docker logs --timestamps ef281d3d5c3d
+docker logs ef281d3d5c3d
+docker logs -f --since '2021-07-27T00:00:00' 79a0ff84209e
+
+mvnw clean install  
+docker build -f Dockerfile --build-arg JAR_FILE=aws_project01-0.0.1.jar -t aws_project01/aws_project01 .
+docker tag 8146d546a10b  suleimanmoaraes/curso_aws_project01:1.5.0
+docker push suleimanmoaraes/curso_aws_project01:1.5.0
+docker run -d -p 8080:8080 suleimanmoaraes/curso_aws_project01:1.5.0
+
+docker run -d --rm -p  4566:4566 -p 4571:4571 localstack/localstack -e "SERVICES=sns, sqs, dynamodb, s3"
+
+docker build -f Dockerfile --build-arg JAR_FILE=aws_project02-0.0.1.jar -t aws_project02/aws_project02 .
+docker tag 6bc31267ac4e  suleimanmoaraes/curso_aws_project02:1.0.0
+docker run -d -p 9090:9090 suleimanmoaraes/curso_aws_project02:1.0.0
+docker run -p 9090:9090 suleimanmoaraes/curso_aws_project02:1.0.0
+docker run -p 9090:9090 aws_project02/aws_project02
+
+
+
+
+
+

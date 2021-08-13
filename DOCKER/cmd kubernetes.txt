@@ -1,0 +1,51 @@
+kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-beta6/aio/deploy/recommended.yaml
+
+kubectl edit arquivo.yaml
+kubectl  create  -f arquivo.yaml
+kubectl  create  deployment <nome> --image=<imagem>
+kubectl apply -f arquivo.yaml
+kubectl create -f C:/areatrabalho/projetos/eclipse_sts/java-back-end-livro/postgres/create-user.yaml
+
+kubectl get pods
+kubectl get all
+kubectl get rs //numero de replicas
+kubectl get services
+kubectl get ingress
+kubectl get deployments
+
+kubectl rollout status deployment/<nome> //verificar alterações
+kubectl rollout undo deployment/<nome> //rolback
+
+kubectl set image deployment/<nome> <nome_container>=<nome_imagem>
+
+kubectl describe pods
+kubectl describe deployments
+kubectl describe services/<nome>
+
+kubectl config view
+
+kubectl expose deployment <nome> --type=<tipo> --port=<porta>
+kubectl expose deployment flask-deploy --type=LoadBalancer --port=5000
+
+kubectl logs -f nome-pod
+kubectl delete nome-objeto
+kubectl delete pod/nome-objeto
+kubectl delete service/nome-objeto
+kubectl scale --replicas=1 deployment/user-api
+
+# acessar  o  dashboard
+kubectl proxy
+http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/#/login
+# GET token
+kubectl -n kube-system describe secret
+kubectl -n kube-system describe secret > C:\Users\sulei\OneDrive\Documentos\mada\cursos\java-back-end-livro\token_kuber.txt
+kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep loja-admin | awk '{print $1}')
+
+#utilizar o comando  port-foward  do  kubectl , que mapeia uma porta  do  SO  para  uma  porta  do  Pod  que  está  em  execução  no cluster
+kubectl port-forward svc/postgres 5000:5433
+kubectl port-forward service/postgres 5000:5433
+
+# Para instalar o Nginx no servidor, execute o seguinte comando:
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/cloud/deploy.yaml
+
+# Corrige o erro ao criar ingress - kubectl delete -A ValidatingWebhookConfiguration ingress-nginx-admission

@@ -1,0 +1,18 @@
+//Swarm
+docker swarm init   |OU|   docker swarm init --advertise-addr <IP publico>
+docker swarm leave -f //sair
+docker node ls
+docker node rm <ID>
+docker service ls
+docker service rm <nome | ID>
+docker service create --name <nome> <imagem>
+docker service create --name <nome> --replicas <numero> <imagem>
+docker service inspect <ID>
+docker service update --image <image> <servico>
+docker service update --image nginx:1.18.0 pdq //pdq é o id
+docker service scale <nome | ID>=<num replicas>
+docker swarm join --token SWMTKN-1-5rtqnzhbeqcdnoylmclwu8l2jiqxftthw14qhpnkcsy1lrtcd2-625hqlum84k742pcakg6jxdtf 192.168.0.28:2377
+docker swarm join-token worker
+docker swarm join-token manager
+docker stack deploy -c <arquivo.yaml> <nome>
+docker network create --driver overlay swarm-rede
