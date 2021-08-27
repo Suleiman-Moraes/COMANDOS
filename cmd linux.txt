@@ -26,3 +26,13 @@ man <cmd> //Explica os comandos, vulgo um manual
 man ls
 
 ctrl + r // lista os cmd utilizados com filtro
+
+
+Acessar a máquina de hml:
+ssh user@255.255.255.255
+senha
+Acessar o container postgres:
+docker exec -it postgres_publicador_dje /bin/bash
+Executar:
+psql -h 255.255.255.255 -d <database name> -U <user> -W
+senha

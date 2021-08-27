@@ -1,0 +1,24 @@
+version: '3.3'
+
+services:
+  eurekaserver:
+    image: eureka-server:1.0.0
+    ports:
+      - "8180:8180"
+    networks:
+      - networkpje
+
+  zuulserver:
+    image: zuul-server:1.0.0
+    ports:
+      - "8181:8181"
+    environment:
+      EUREKA_URI: http://eurekaserver:8180/eureka
+    depends_on:
+      - eurekaserver
+    networks:
+      - networkpje
+      
+networks:
+  networkpje:
+    name: network_pje
