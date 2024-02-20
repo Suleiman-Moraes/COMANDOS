@@ -89,7 +89,30 @@ docker run -p 9090:9090 suleimanmoaraes/curso_aws_project02:1.0.0
 docker run -p 9090:9090 aws_project02/aws_project02
 
 
+export host tcp docker
+$ sudo cp /lib/systemd/system/docker.service /etc/systemd/system/
+$ sudo sed -i 's/\ -H\ fd:\/\///g' /etc/systemd/system/docker.service
 
+nano /etc/docker/daemon.json
+{
+  "hosts": ["unix:///var/run/docker.sock", "tcp://0.0.0.0:2375"]
+}
+
+$ sudo systemctl daemon-reload
+$ sudo service docker restart
+
+ip addr show eth0 | grep inet | awk '{ print $2; }' | sed 's/\/.*$//'
+
+https://medium.com/@NelsonBN/how-to-run-integration-tests-using-testcontainers-with-wsl-52c77a2acbbb
+https://java.testcontainers.org/features/configuration/
+
+#Modified by Testcontainers
+#Mon Feb 19 11:10:28 WET 2024
+docker.host=tcp\://172.27.177.204\:2375
+testcontainers.reuse.enable=false
+
+#Envs
+DOCKER_HOST: tcp://172.27.177.204:2375
 
 
 
