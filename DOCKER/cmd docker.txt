@@ -114,5 +114,5 @@ testcontainers.reuse.enable=false
 #Envs
 DOCKER_HOST: tcp://172.27.177.204:2375
 
-
-
+# Usando docker Engine no WSL2, quando se quer executar um arquivo do docker-compose
+cd /mnt/c/areaTrabalho/configs/configs/docker-env
