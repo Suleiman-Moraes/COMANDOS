@@ -76,3 +76,6 @@ echo Maven Ok
 
 echo Done.
 pause
+
+ren .\run_pull_clean_install.bat "C:\ProgramData\chocolatey\lib\maven\apache-maven-3.6.3" "C:\Program Files\Microsoft\jdk-11.0.20.8-hotspot" "C:\path\project" true true
+ren .\run_pull_clean_install.bat "maven path" "java path" "project path" [offline] [DskipTests]
