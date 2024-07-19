@@ -22,6 +22,15 @@ docker image rmi -f f0a7a6b05427
 //limpar imgs não utilizidas
 docker system prune
 
+//Liste todas as imagens com none como nome ou tag:
+docker images -f "dangling=true"
+
+//Remova as imagens listadas linux:
+docker images -f "dangling=true" -q | xargs docker rmi
+
+//Remova as imagens listadas windows:
+docker images -f "dangling=true" -q | ForEach-Object { docker rmi $_ }
+
 //Copiar arquivos do container
 docker cp <nome_container>:<caminho_ex:/app/app.js> ./<local>/
 
