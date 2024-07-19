@@ -5,22 +5,28 @@ rem Configurar variáveis de ambiente
 set "MAVEN_HOME=%~1"
 set "JAVA_HOME=%~2"
 set "PROJECT_DIR=%~3"
-set "BUILD_OFFLINE=%~4"
-set "SKIP_TESTS=%~5"
+set "BRANCH_NAME=%~4"
+set "BUILD_OFFLINE=%~5"
+set "SKIP_TESTS=%~6"
 
 rem Verificar se todas as variáveis necessárias estão definidas
 if "%MAVEN_HOME%"=="" (
-    echo Usage: %0 "<maven_home>" "<java_home>" "<project_dir>" [<build_offline>] [<skip_tests>]
+    echo Usage: %0 "<maven_home>" "<java_home>" "<project_dir>" "<branch_name>" [<build_offline>] [<skip_tests>]
     exit /b 1
 )
 
 if "%JAVA_HOME%"=="" (
-    echo Usage: %0 "<maven_home>" "<java_home>" "<project_dir>" [<build_offline>] [<skip_tests>]
+    echo Usage: %0 "<maven_home>" "<java_home>" "<project_dir>" "<branch_name>" [<build_offline>] [<skip_tests>]
     exit /b 1
 )
 
 if "%PROJECT_DIR%"=="" (
-    echo Usage: %0 "<maven_home>" "<java_home>" "<project_dir>" [<build_offline>] [<skip_tests>]
+    echo Usage: %0 "<maven_home>" "<java_home>" "<project_dir>" "<branch_name>" [<build_offline>] [<skip_tests>]
+    exit /b 1
+)
+
+if "%BRANCH_NAME%"=="" (
+    echo Usage: %0 "<maven_home>" "<java_home>" "<project_dir>" "<branch_name>" [<build_offline>] [<skip_tests>]
     exit /b 1
 )
 
@@ -52,8 +58,14 @@ set "PATH=%MAVEN_HOME%\bin;%JAVA_HOME%\bin;%PATH%"
 rem Navegar para o diretório do projeto
 cd "%PROJECT_DIR%"
 
+echo Checking out branch %BRANCH_NAME%...
+git checkout %BRANCH_NAME%
+if errorlevel 1 (
+    echo Git checkout failed, continuing with Maven build...
+)
+
 echo Pulling latest code from Git...
-git pull
+git pull origin %BRANCH_NAME%
 if errorlevel 1 (
     echo Git pull failed, continuing with Maven build...
 )
@@ -71,11 +83,18 @@ if "%SKIP_TESTS%"=="true" (
 
 echo Executing Maven: mvn !MAVEN_ARGS!
 mvn !MAVEN_ARGS!
+set MAVEN_EXIT_CODE=%ERRORLEVEL%
 
-echo Maven Ok
+echo Maven exited with code !MAVEN_EXIT_CODE!
+
+rem Verifica se o build Maven foi bem-sucedido
+if !MAVEN_EXIT_CODE! neq 0 (
+    echo Maven build failed.
+    exit /b 1
+)
 
 echo Done.
 pause
 
-ren .\run_pull_clean_install.bat "C:\ProgramData\chocolatey\lib\maven\apache-maven-3.6.3" "C:\Program Files\Microsoft\jdk-11.0.20.8-hotspot" "C:\path\project" true true
-ren .\run_pull_clean_install.bat "maven path" "java path" "project path" [offline] [DskipTests]
+ren .\run_pull_clean_install.bat "C:\ProgramData\chocolatey\lib\maven\apache-maven-3.6.3" "C:\Program Files\Microsoft\jdk-11.0.20.8-hotspot" "C:\path\project" develop true true
+ren .\run_pull_clean_install.bat "maven path" "java path" "project path" branch_name [offline] [DskipTests]
