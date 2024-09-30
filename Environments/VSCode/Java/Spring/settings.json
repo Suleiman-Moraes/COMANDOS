@@ -1,0 +1,30 @@
+{
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/target": true,
+        "**mvn**": true
+    },
+    // "spring-boot.ls.java.home": "{path}\\jdk-17",
+    // "java.jdt.ls.java.home": "{path}\\jdk-17",
+    "actionButtons": {
+        "commands": [
+            {
+                "name": "MVN_TEST",
+                "color": "yellow",
+                "command": "mvn -o test"
+            },
+            {
+                "name": "JACOCO",
+                "color": "yellow",
+                "command": "mvn jacoco:report"
+            }
+        ]
+    },
+    "java.compile.nullAnalysis.mode": "disabled",
+    "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx2G -Xms100m -Xlog:disable"
+}
