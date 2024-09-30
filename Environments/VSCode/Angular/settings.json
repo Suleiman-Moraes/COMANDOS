@@ -1,0 +1,34 @@
+{
+    "editor.formatOnPaste": false,
+    "terminal.integrated.confirmOnExit": "always",
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": "explicit"
+    },
+    "git.autofetch": true,
+    "[markdown]": {
+        "editor.wordWrap": "on"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "workbench.iconTheme": "material-icon-theme",
+    "[scss]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "codeium.enableConfig": {
+        "*": true
+    },
+    "scm.workingSets.enabled": true
+}
