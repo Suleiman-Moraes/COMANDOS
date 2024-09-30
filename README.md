@@ -51,6 +51,8 @@ Contributions are welcome! Feel free to submit a pull request if you have new ut
 4. Push to the branch (`git push origin feature/new-utility`).
 5. Open a pull request.
 
+## 📧 Contact
+
 - Email: [suleimandevtech@gmail.com](mailto:suleimandevtech@gmail.com)
 - [LinkedIn](https://www.linkedin.com/in/suleiman-moraes)
 
